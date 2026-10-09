@@ -9,6 +9,45 @@ library(ggplot2)
 songs <- readRDS(here::here("data/processed/songs.rds"))
 ```
 
-## Figure 1
+## Chart longevity rose for four decades, then fell
 
-*To be built.*
+*Your text introducing Figure 1 goes here.*
+
+```{r}
+#| label: fig-longevity
+#| fig-width: 7
+#| fig-height: 4
+#| fig-cap: "Median number of weeks spent on the Billboard Hot 100, by year of chart debut (N = 28,122 songs, 1959–2019). The shaded band shows the interquartile range (25th–75th percentile). Weeks are counted across all chart runs, including re-entries. The dashed line marks the 1991 introduction of Billboard's recurrent rule, which removes songs from the chart after 20 weeks once they fall below No. 50."
+
+fig1_data <- songs |>
+  group_by(debut_year) |>
+  summarise(
+    median_weeks = median(weeks_total),
+    q25          = quantile(weeks_total, 0.25),
+    q75          = quantile(weeks_total, 0.75),
+    n_songs      = n(),
+    .groups = "drop"
+  )
+
+peak <- fig1_data |> slice_max(median_weeks, n = 1, with_ties = FALSE)
+last <- fig1_data |> filter(debut_year == max(debut_year))
+
+ggplot(fig1_data, aes(x = debut_year, y = median_weeks)) +
+  geom_ribbon(aes(ymin = q25, ymax = q75), fill = "grey85") +
+  geom_vline(xintercept = 1991, linetype = "dashed", colour = "grey40") +
+  annotate("text", x = 1991.6, y = 24, hjust = 0, size = 3.2,
+           label = "1991: Billboard introduces\n20-week recurrent rule") +
+  geom_line(linewidth = 0.8, colour = "black") +
+  geom_point(data = bind_rows(peak, last), size = 2) +
+  geom_text(data = peak,
+            aes(label = paste0(debut_year, ": ", median_weeks, " weeks")),
+            vjust = -1, size = 3.2) +
+  geom_text(data = last,
+            aes(label = paste0(debut_year, ": ", median_weeks, " weeks")),
+            hjust = 1.15, vjust = 0.4, size = 3.2) +
+  scale_x_continuous(breaks = seq(1960, 2020, 10)) +
+  scale_y_continuous(limits = c(0, 27), expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Year of chart debut",
+       y = "Weeks on Billboard Hot 100") +
+  theme_classic(base_size = 11)
+```
