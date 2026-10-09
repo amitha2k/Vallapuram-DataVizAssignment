@@ -1,0 +1,11 @@
+---
+title: "Are hits getting more disposable?"
+---
+
+<!-- Story summary: 250 words maximum. Draft this after the figures are done. -->
+
+*Story summary goes here.*
+
+- [Version A: Scientific article](scientific.qmd)
+- [Version B: Web explainer](accessible.qmd)
+- [Data and sources](data.qmd)

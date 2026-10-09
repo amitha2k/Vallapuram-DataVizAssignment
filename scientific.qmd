@@ -1,0 +1,14 @@
+---
+title: "Version A: Scientific article"
+---
+
+```{r}
+#| label: setup
+library(dplyr)
+library(ggplot2)
+songs <- readRDS(here::here("data/processed/songs.rds"))
+```
+
+## Figure 1
+
+*To be built.*

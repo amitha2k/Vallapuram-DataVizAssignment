@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data and sources",
+    "section": "",
+    "text": "Dataset: Billboard Hot 100 weekly charts, 2 August 1958 to 29 May 2021, from TidyTuesday, 14 September 2021 (compiled by Sean Miller from Billboard.com).\nTransformations, limitations and rule changes go here.\nTo reproduce: run R/01_download.R, then R/02_clean.R, then render the site."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Are hits getting more disposable?",
+    "section": "",
+    "text": "Story summary goes here.\n\nVersion A: Scientific article\nVersion B: Web explainer\nData and sources"
+  },
+  {
+    "objectID": "scientific.html",
+    "href": "scientific.html",
+    "title": "Version A: Scientific article",
+    "section": "",
+    "text": "To be built."
+  },
+  {
+    "objectID": "scientific.html#figure-1",
+    "href": "scientific.html#figure-1",
+    "title": "Version A: Scientific article",
+    "section": "",
+    "text": "To be built."
+  },
+  {
+    "objectID": "accessible.html",
+    "href": "accessible.html",
+    "title": "Version B: Web explainer",
+    "section": "",
+    "text": "To be built."
+  }
+]

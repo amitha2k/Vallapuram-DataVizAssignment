@@ -1,0 +1,11 @@
+---
+title: "Data and sources"
+---
+
+**Dataset:** Billboard Hot 100 weekly charts, 2 August 1958 to 29 May 2021,
+from [TidyTuesday, 14 September 2021](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-09-14)
+(compiled by Sean Miller from Billboard.com).
+
+*Transformations, limitations and rule changes go here.*
+
+**To reproduce:** run `R/01_download.R`, then `R/02_clean.R`, then render the site.

@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Are Hits Getting More Disposable?"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Story summary
+      - href: scientific.qmd
+        text: "A: Scientific article"
+      - href: accessible.qmd
+        text: "B: Web explainer"
+      - href: data.qmd
+        text: Data & sources
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+  message: false
