@@ -2,10 +2,25 @@
 title: "Are hits getting more disposable?"
 ---
 
-<!-- Story summary: 250 words maximum. Draft this after the figures are done. -->
+---
+title: "Are hit songs getting more disposable?"
+subtitle: "A data story from 60 years of the Billboard Hot 100"
+---
 
-*Story summary goes here.*
+## Story summary
 
-- [Version A: Scientific article](scientific.qmd)
-- [Version B: Web explainer](accessible.qmd)
-- [Data and sources](data.qmd)
+Is popular music becoming more disposable? In the era of short-form content, short attention spans and Tik-tok virality. I am sure we've all despised songs that we have had to hear 3000 times a day and collectively banished them from our social media feeds, and hence, the charts too. A common assumption about the streaming era is that songs now rise and vanish faster than ever. Using every weekly Billboard Hot 100 chart from 1958 to 2021, covering 28,122 songs that debuted between 1959 and 2019, this project asks how long songs actually stay on the chart.
+
+At first, the data seem to confirm it. The typical song's chart run grew from about 7 weeks in the 1960s to 20 weeks in 2001, then collapsed to 4 weeks by 2019.
+
+But the distribution behind that trend reveals two artificial "walls". From 1991, a quarter of all songs left the chart at exactly 20 weeks, because Billboard began removing songs after 20 weeks once they fell below No. 50. In the 2010s, more than a quarter of songs charted for a single week, mostly album tracks that entered briefly on release-week downloads and streams and never reached the top half of the chart. The apparent rise and fall in longevity therefore reflects chart rules and release patterns as much as listening habits.
+
+Measured in a way neither wall affects, by counting how long Top 10 hits stay in the Top 40, the trend reverses: the biggest hits have grown steadily more durable, from about 10 weeks in the 1960s to more than 24 weeks in the 2010s.
+
+The Hot 100 has not become more disposable. It has become more top-heavy: songs stay longer in the top half and come and go quick in the bottom half.
+
+## Read the story
+
+- [**Version A: Scientific article**](scientific.qmd): static, greyscale figures with full technical detail
+- [**Version B: Web explainer**](accessible.qmd): the same story for a general audience, with interactive charts
+- [**Data and sources**](data.qmd): where the data comes from, how it was processed, and its limitations

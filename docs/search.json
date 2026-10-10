@@ -44,8 +44,36 @@
   {
     "objectID": "accessible.html",
     "href": "accessible.html",
-    "title": "Version B: Web explainer",
+    "title": "Are hit songs getting more disposable?",
     "section": "",
-    "text": "To be built."
+    "text": "It feels like songs come and go faster than ever. A track blows up on TikTok, everyone streams it for a week, and then it’s gone. The Billboard Hot 100 has ranked America’s most popular songs every week since 1958, so we can check whether that feeling is true.\nWe looked at 28,122 songs that hit the chart between 1959 and 2019 and asked a simple question: how long did each one stay?"
+  },
+  {
+    "objectID": "accessible.html#at-first-glance-yes-songs-are-vanishing-faster",
+    "href": "accessible.html#at-first-glance-yes-songs-are-vanishing-faster",
+    "title": "Are hit songs getting more disposable?",
+    "section": "At first glance, yes: songs are vanishing faster",
+    "text": "At first glance, yes: songs are vanishing faster\nIn the 1960s, a typical song spent about 7 weeks on the Hot 100. That number climbed for 40 years, to a high of 20 weeks in 2001. Then it crashed. By 2019, the typical song lasted just 4 weeks.\nHover over the line to see any year.\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\nCase closed? Not quite. Something odd is hiding underneath that line."
+  },
+  {
+    "objectID": "accessible.html#but-two-walls-in-the-data-werent-built-by-listeners",
+    "href": "accessible.html#but-two-walls-in-the-data-werent-built-by-listeners",
+    "title": "Are hit songs getting more disposable?",
+    "section": "But two “walls” in the data weren’t built by listeners",
+    "text": "But two “walls” in the data weren’t built by listeners\nInstead of looking at the typical song, let’s count how many songs lasted exactly 1 week, exactly 2 weeks, and so on. If people simply lose interest at different times, you’d expect a smooth curve. That’s exactly what we see before 1991.\nAfter that, two strange walls appear.\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nThe 20-week wall is a rule. In 1991, Billboard started removing any song that had been on the chart for 20 weeks once it dropped below No. 50, to make room for new music. Songs didn’t stop being popular at week 20. Billboard stopped counting them.\nThe one-week wall is about how music is released now. When a big artist drops an album, many of its tracks get streamed enough to chart in the first week, then fall off. Nine in ten of them never make it into the top half of the chart. In 2020, 15 Taylor Swift album tracks did exactly this.\nSo that first chart was measuring Billboard’s rules and album release days as much as what people actually liked."
+  },
+  {
+    "objectID": "accessible.html#the-biggest-hits-are-lasting-longer-than-ever",
+    "href": "accessible.html#the-biggest-hits-are-lasting-longer-than-ever",
+    "title": "Are hit songs getting more disposable?",
+    "section": "The biggest hits are lasting longer than ever",
+    "text": "The biggest hits are lasting longer than ever\nHere’s a fairer test. Take only the songs that became real hits by reaching the Top 10, and count how long they stayed in the Top 40. Neither wall touches this: the 20-week rule only removes songs below No. 50, and one-week album tracks almost never reach the Top 10.\nHover over either line to compare years.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\nThe two lines move together for decades, then split apart. The typical song now disappears in a few weeks, but the biggest hits are staying near the top longer than ever: about 10 weeks in the 1960s, 26 weeks by 2019."
+  },
+  {
+    "objectID": "accessible.html#so-are-hits-getting-more-disposable",
+    "href": "accessible.html#so-are-hits-getting-more-disposable",
+    "title": "Are hit songs getting more disposable?",
+    "section": "So, are hits getting more disposable?",
+    "text": "So, are hits getting more disposable?\nNo, but the chart has changed shape. The bottom of the Hot 100 now churns faster than ever, with dozens of songs passing through for a single week. The top has become stickier: the songs everyone really listens to stay there for months.\nWhether music looks “disposable” depends on which songs you count and on rules most listeners never hear about.\n\n\n\n\n\n\nNoteHow we measured this (click to expand)\n\n\n\n\n\n\nData: every weekly Billboard Hot 100 chart from August 1958 to May 2021, via TidyTuesday. We counted each song once and added up all its weeks on the chart, including re-entries.\n“Typical song” means the median: half of songs lasted longer, half shorter. We used the median because a few songs that lasted over a year would distort an average.\nYears: songs that first charted from 1959 to 2019. Songs from 2020 on hadn’t finished their chart runs when the data ends.\nOne more change in 1991: Billboard also switched to electronic sales and radio tracking (Nielsen SoundScan and BDS) that year. That’s probably why Top 10 hits jump in the early 1990s, so part of their rise reflects better measurement, not only listener behaviour.\nFull technical details are in the scientific version."
   }
 ]

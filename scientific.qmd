@@ -11,9 +11,9 @@ songs <- readRDS(here::here("data/processed/songs.rds"))
 
 ## Chart longevity rose for four decades, then fell
 
-A common claim about the streaming era is that popular music has become more disposable: songs rise quickly and are forgotten just as fast. Weekly Billboard Hot 100 charts allow this claim to be examined over six decades. I collapsed 327,895 weekly chart entries into one record per song and measured each song's longevity as its total number of weeks on the chart, counting re-entries, for the 28,122 songs that debuted between 1959 and 2019.
+A common claim about the streaming era is that popular music has become more disposable: songs rise quickly and are forgotten just as fast. Weekly Billboard Hot 100 charts allow this claim to be examined over six decades. I collapsed 327,895 weekly chart entries into one data point per song and measured each song's longevity as its total number of weeks on the chart, including re-entries, for the 28,122 songs that debuted between 1959 and 2019.
 
-@fig-longevity shows the median chart run by year of debut. Longevity rose steadily for four decades, from roughly 7–9 weeks in the 1960s to a peak of 20 weeks for songs debuting in 2001, before falling sharply to a median of 4 weeks in 2019. Taken at face value, this trajectory supports the disposability claim. However, the distribution around the median suggests that this reading is incomplete: from 1991 onward, the upper quartile is fixed at almost exactly 20 weeks, a ceiling that coincides with a change in Billboard's chart methodology. We examine this pattern in the following section.
+@fig-longevity shows the median chart run by year of debut. Longevity rose steadily for four decades, from roughly 7–9 weeks in the 1960s to a peak of 20 weeks for songs debuting in 2001, before falling sharply to a median of 4 weeks in 2019. Taken at face value, this trajectory supports the disposability claim. However, the distribution around the median suggests that this reading is incomplete: from 1991 onward, the upper quartile is fixed at almost exactly 20 weeks, a ceiling that coincides with a change in the way Billboard assigned these rankings. We examine this pattern in the following section.
 
 ```{r}
 #| label: fig-longevity
@@ -56,11 +56,11 @@ ggplot(fig1_data, aes(x = debut_year, y = median_weeks)) +
 
 ## Two discontinuities in the distribution of chart runs
 
-Medians summarise the centre of a distribution but can conceal discontinuities within it. @fig-distribution therefore shows the full distribution of chart-run lengths for songs debuting in three periods: before the 1991 methodology change (1959–1990), after the change but before digital downloads became widespread (1991–2004), and the download and streaming era (2010–2019). Songs debuting 2005–2009 are omitted as a transition period.
+Medians summarise the centre of a distribution but can ignore some important patterns. @fig-distribution therefore shows the full distribution of chart-run lengths for songs debuting in three periods: before the 1991 methodology change (1959–1990), after the change but before digital downloads became widespread (1991–2004), and the download and streaming era (2010–2019). Songs debuting 2005–2009 are omitted as a transition period.
 
-Before 1991, chart runs follow a smooth, right-skewed distribution: runs of exactly 20 weeks account for 2% of songs, no different from neighbouring lengths. Among songs debuting in 1991–2004, 25% leave the chart at exactly 20 weeks. This discontinuity corresponds to Billboard's recurrent rule, introduced in 1991, which removes a song from the Hot 100 once it has charted for 20 weeks and fallen below No. 50. Consistent with this mechanism, 92% of the 1,119 songs in this period with runs of exactly 20 weeks were positioned below No. 50 in their final chart week.
+Before 1991, chart runs follow a smooth, right-skewed distribution: runs of exactly 20 weeks account for 2% of songs, no different from neighbouring lengths. Among songs debuting in 1991–2004, 25% leave the chart at exactly 20 weeks. This discontinuity links to Billboard's recurrent rule, introduced in 1991, which removes a song from the Hot 100 once it has charted for 20 weeks and fallen below No. 50. This was done to make space for newer songs by getting rid of the bottom half of songs that have charted for a long time. 
 
-A second discontinuity appears in 2010–2019, when 28% of songs (1,245 of 4,446) spend a single week on the chart, compared with 3% before 1991. These entries are overwhelmingly marginal: 91% never rose above No. 50, with a median peak position of No. 81. They reflect a release pattern in which tracks from newly released albums briefly enter the chart on first-week downloads or streams; in 2010–2011 they also include a large number of *Glee* cast recordings (12% of all one-week entries in the decade). Together, these two features account for much of the trajectory in @fig-longevity. The rise in median longevity after 1991 coincides with a policy-imposed ceiling, while the decline after 2005 is driven largely by a growing mass of single-week entries at the bottom of the chart.
+A second discontinuity appears in 2010–2019, when 28% of songs (1,245 of 4,446) spend a single week on the chart, compared with 3% before 1991. They reflect a release pattern in which tracks from newly released albums briefly enter the chart on first-week downloads or streams. Together, these two features account for much of the trajectory in @fig-longevity. The rise in median longevity after 1991 coincides with a policy-imposed ceiling, while the decline after 2005 is driven largely by a growing mass of single-week entries at the bottom of the chart.
 
 ```{r}
 #| label: fig-distribution
@@ -100,13 +100,13 @@ ggplot(fig2_data, aes(x = weeks_total, y = share, fill = marked)) +
 
 ## Top hits have grown more durable
 
-If median chart longevity is shaped by a policy ceiling and by a growing number of marginal single-week entries, a fairer test of the disposability claim requires a measure that neither affects. We therefore restricted the analysis to songs that peaked in the Top 10 (n = 4,837) and measured how many weeks each spent in the Top 40. The recurrent rule applies only to songs below No. 50, and single-week entries almost never reach the Top 10: of the 1,245 one-week songs debuting in 2010–2019, only one did.
+I then restricted the analysis to songs that peaked in the Top 10 (n = 4,837) and measured how many weeks each spent in the Top 40. The rule of getting rid of songs that spent more than 20 weeks on the chart applies only to songs below No. 50, and single-week entries almost never reach the Top 10: of the 1,245 one-week songs debuting in 2010–2019, only one did.
 
-@fig-top-hits compares this measure with the all-song median from @fig-longevity. The two series track each other closely until the early 2000s, then diverge. While the median song's total chart run fell, Top 10 hits continued to grow more durable: their median time in the Top 40 rose from 10 weeks for songs debuting in the 1960s to 13 weeks in the 1980s, 21 weeks in the 2000s and 24 weeks in the 2010s. Consistent with longer stays at the top, fewer songs reached the Top 10 each year, falling from an average of about 106 per year in the 1960s to about 52 per year in the 2010s.
-
-One caveat applies. Top 10 longevity also rises sharply around 1991, from a median of 13 weeks for songs debuting in 1985–1990 to 20 weeks for those debuting in 1992–1997. Because the recurrent rule does not affect songs in the Top 40, this jump more likely reflects Billboard's concurrent adoption of Nielsen SoundScan sales data and Broadcast Data Systems (BDS) airplay monitoring, which replaced reported store and radio surveys. Part of the long-run increase may therefore reflect improved measurement rather than changes in listening behaviour alone.
+@fig-top-hits compares this measure with the all-song median from @fig-longevity. The two series track each other closely until the early 2000s, then diverge. While the median song's total chart run fell, Top 10 hits continued to grow more durable. Consistent with longer stays at the top, fewer songs reached the Top 10 each year, falling from an average of about 106 per year in the 1960s to about 52 per year in the 2010s.
 
 Taken together, the three figures suggest that the Hot 100 has not become uniformly more disposable. The bottom of the chart now turns over faster than at any point in its history, but the songs at the top remain there longer than ever. Apparent trends in chart longevity depend substantially on how the chart itself is constructed.
+
+Further examination of the data and research into Billboard's ranking methods may give us insight into the reason behind these trends which might be much deeper than the advent of streaming platforms.
 
 ```{r}
 #| label: fig-top-hits

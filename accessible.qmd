@@ -1,12 +1,168 @@
 ---
-title: "Version B: Web explainer"
+title: "Are hit songs getting more disposable?"
+subtitle: "Version B: Web explainer"
 ---
 
 ```{r}
 #| label: setup
 library(dplyr)
 library(ggplot2)
+library(plotly)
 songs <- readRDS(here::here("data/processed/songs.rds"))
+
+blue   <- "#0072B2"
+orange <- "#D55E00"
+grey   <- "#8C8C8C"
 ```
 
-*To be built.*
+It feels like songs come and go faster than ever. A track blows up on TikTok, everyone streams it for a week, and then it's gone. The Billboard Hot 100 has ranked America's most popular songs every week since 1958, so we can check whether that feeling is true.
+
+I looked at **28,122 songs** that hit the chart between 1959 and 2019 and asked a simple question: **how long did each one stay?**
+
+## At first glance, yes: songs are vanishing faster
+
+In the 1960s, a typical song spent about 7 weeks on the Hot 100. That number climbed for 40 years, to a high of 20 weeks in 2001. Then it crashed. By 2019, the typical song lasted just **4 weeks**.
+
+*Hover over the line to see any year.*
+
+```{r}
+#| label: fig-b-trend
+#| fig-alt: "Line chart of the typical number of weeks a song stayed on the Billboard Hot 100, by the year it first charted. It rises from about 7 weeks in the 1960s to 20 weeks in 2001, then falls to 4 weeks in 2019."
+
+trend <- songs |>
+  group_by(debut_year) |>
+  summarise(median_weeks = median(weeks_total), n_songs = n(), .groups = "drop")
+
+plot_ly(trend, x = ~debut_year, y = ~median_weeks,
+        type = "scatter", mode = "lines",
+        line = list(color = blue, width = 3),
+        hovertemplate = paste0(
+          "<b>%{x}</b><br>",
+          "Typical song lasted <b>%{y} weeks</b><br>",
+          "%{customdata:,} songs debuted this year<extra></extra>"),
+        customdata = ~n_songs) |>
+  add_annotations(x = 2001, y = 20, text = "<b>2001: 20 weeks</b><br>the peak",
+                  showarrow = TRUE, arrowhead = 0, ax = -60, ay = -30,
+                  font = list(size = 13)) |>
+  add_annotations(x = 2019, y = 4, text = "<b>2019: 4 weeks</b>",
+                  showarrow = TRUE, arrowhead = 0, ax = -70, ay = -25,
+                  font = list(size = 13)) |>
+  layout(xaxis = list(title = "Year the song first charted", fixedrange = TRUE),
+         yaxis = list(title = "Weeks on the chart (typical song)",
+                      rangemode = "tozero", fixedrange = TRUE),
+         font = list(size = 14),
+         margin = list(t = 30)) |>
+  config(displayModeBar = FALSE)
+```
+
+Case closed? Not quite. Something odd is hiding underneath that line.
+
+## But two "walls" in the data weren't built by listeners
+
+Instead of looking at the typical song, let's count how many songs lasted exactly 1 week, exactly 2 weeks, and so on. If people simply lose interest at different times, you'd expect a smooth curve. That's exactly what we see before 1991.
+
+After that, two strange walls appear.
+
+```{r}
+#| label: fig-b-walls
+#| fig-width: 8
+#| fig-height: 7
+#| fig-alt: "Three bar charts showing how many weeks songs lasted on the chart in three periods. Before 1991 the bars form a smooth curve. From 1991 to 2004, a quarter of all songs leave at exactly 20 weeks, shown as a tall orange bar. From 2010 to 2019, more than a quarter of songs last exactly 1 week, shown as a tall blue bar."
+
+walls <- songs |>
+  filter(!is.na(era), weeks_total <= 40) |>
+  count(era, weeks_total) |>
+  group_by(era) |>
+  mutate(share = n / sum(songs$era == first(era), na.rm = TRUE)) |>
+  ungroup() |>
+  mutate(
+    bar = case_when(weeks_total == 20 ~ "20 weeks",
+                    weeks_total == 1  ~ "1 week",
+                    TRUE              ~ "other"),
+    panel = recode(era,
+      "1959-1990" = "1959 to 1990: a smooth curve",
+      "1991-2004" = "1991 to 2004: a wall at 20 weeks",
+      "2010-2019" = "2010 to 2019: a wall at 1 week")
+  )
+
+callouts <- tibble::tribble(
+  ~panel,                              ~x,   ~y,    ~label,                                                     ~col,
+  "1991 to 2004: a wall at 20 weeks",     22,   0.24,  "1 in 4 songs left at exactly 20 weeks.\nThat's Billboard's rule, not listeners.", orange,
+  "2010 to 2019: a wall at 1 week",       3,    0.27,  "Over 1 in 4 songs lasted a single week:\nalbum tracks that charted once on release.", blue
+)
+
+ggplot(walls, aes(x = weeks_total, y = share, fill = bar)) +
+  geom_col(width = 0.85) +
+  geom_text(data = callouts, aes(x = x, y = y, label = label, colour = col),
+            inherit.aes = FALSE, hjust = 0, vjust = 1, size = 4, lineheight = 0.95,
+            fontface = "bold") +
+  facet_wrap(~ panel, ncol = 1) +
+  scale_fill_manual(values = c("20 weeks" = orange, "1 week" = blue, "other" = "grey80"),
+                    guide = "none") +
+  scale_colour_identity() +
+  scale_x_continuous(breaks = c(1, 10, 20, 30, 40)) +
+  scale_y_continuous(labels = scales::label_percent(accuracy = 1),
+                     breaks = c(0, 0.1, 0.2, 0.3),
+                     limits = c(0, 0.31), expand = expansion(mult = c(0, 0))) +
+  labs(x = "Number of weeks the song stayed on the chart",
+       y = "Share of songs") +
+  theme_minimal(base_size = 14) +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank(),
+        strip.text = element_text(hjust = 0, face = "bold", size = 14))
+```
+
+**The 20-week wall** is a rule. In 1991, Billboard started removing any song that had been on the chart for 20 weeks once it dropped below No. 50, to make room for new music. Songs didn't stop being popular at week 20. Billboard stopped counting them. This was to make space for new songs as people seemed to get quite attached to songs they liked. But if they weren't too great (so below top 50), Billboard got rid of them to make space for newer songs to shine.
+
+**The one-week wall** is about how music is released now. When a big artist drops an album, many of its tracks get streamed enough to chart in the first week, then fall off. Nine in ten of them never make it into the top half of the chart. 
+
+So that first chart was measuring Billboard's rules and album release days as much as what people actually liked.
+
+## The biggest hits are lasting longer than ever
+
+Here's a fairer test. Take only the songs that became real hits by reaching the **Top 10**, and count how long they stayed in the **Top 40**. Neither wall touches this: the 20-week rule only removes songs below No. 50, and one-week album tracks almost never reach the Top 10.
+
+*Hover over either line to compare years.*
+
+```{r}
+#| label: fig-b-hits
+#| fig-alt: "Line chart comparing two measures by year. The grey line, the typical song's weeks on the chart, falls sharply after 2001. The blue line, the weeks Top 10 hits spent in the Top 40, keeps rising, from about 10 weeks in the 1960s to 26 weeks in 2019."
+
+hits <- bind_rows(
+  songs |>
+    group_by(debut_year) |>
+    summarise(weeks = median(weeks_total), .groups = "drop") |>
+    mutate(series = "Typical song: weeks on the chart"),
+  songs |>
+    filter(top10) |>
+    group_by(debut_year) |>
+    summarise(weeks = median(weeks_top40), .groups = "drop") |>
+    mutate(series = "Top 10 hits: weeks in the Top 40")
+)
+
+plot_ly(hits, x = ~debut_year, y = ~weeks, color = ~series,
+        colors = c(blue, grey),
+        type = "scatter", mode = "lines",
+        line = list(width = 3),
+        hovertemplate = "<b>%{x}</b><br>%{fullData.name}: <b>%{y} weeks</b><extra></extra>") |>
+  add_annotations(x = 2019, y = 26, text = "<b>Top 10 hits</b><br>26 weeks",
+                  showarrow = FALSE, xanchor = "left", xshift = 8,
+                  font = list(color = blue, size = 13)) |>
+  add_annotations(x = 2019, y = 4, text = "<b>Typical song</b><br>4 weeks",
+                  showarrow = FALSE, xanchor = "left", xshift = 8,
+                  font = list(color = grey, size = 13)) |>
+  layout(showlegend = FALSE,
+         xaxis = list(title = "Year the song first charted", fixedrange = TRUE),
+         yaxis = list(title = "Weeks", rangemode = "tozero", fixedrange = TRUE),
+         font = list(size = 14),
+         margin = list(r = 110, t = 30)) |>
+  config(displayModeBar = FALSE)
+```
+
+The two lines move together for decades, then split apart. The typical song now disappears in a few weeks, but the biggest hits are staying near the top longer than ever: about **10 weeks** in the 1960s, **26 weeks** by 2019.
+
+## So, are hits getting more disposable?
+
+**No, but the chart has changed shape.** The bottom of the Hot 100 now churns faster than ever, with dozens of songs passing through for a single week. The top has become stickier: the songs everyone really listens to stay there for months.
+
+Whether music looks "disposable" depends on which songs you count and on rules most listeners never hear about.

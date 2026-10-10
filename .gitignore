@@ -7,3 +7,4 @@ data/raw/
 _freeze/
 
 **/*.quarto_ipynb
+.DS_Store
