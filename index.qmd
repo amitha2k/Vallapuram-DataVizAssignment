@@ -1,15 +1,11 @@
 ---
-title: "Are Hits Getting More Disposable?"
----
-
----
 title: "Are Hit Songs Getting More Disposable?"
 subtitle: "A data story from 60 years of the Billboard Hot 100"
 ---
 
 ## Story summary
 
-Is popular music becoming more disposable? In the era of short-form content, short attention spans and Tik-tok virality. I am sure we've all despised songs that we have had to hear 3000 times a day and collectively banished them from our social media feeds, and hence, the charts too. A common assumption about the streaming era is that songs now rise and vanish faster than ever. Using every weekly Billboard Hot 100 chart from 1958 to 2021, covering 28,122 songs that debuted between 1959 and 2019, this project asks how long songs actually stay on the chart.
+Is popular music becoming more disposable? In the era of short-form content, short attention spans and Tik-tok virality, I am sure we've all despised songs that we have had to hear 3000 times a day and collectively banished them from our social media feeds, and hence, the charts too. A common assumption about the streaming era is that songs now rise and vanish faster than ever. Using every weekly Billboard Hot 100 chart from 1958 to 2021, covering 28,122 songs that debuted between 1959 and 2019, this project asks how long songs actually stay on the chart.
 
 At first, the data seem to confirm it. The typical song's chart run grew from about 7 weeks in the 1960s to 20 weeks in 2001, then collapsed to 4 weeks by 2019.
 
