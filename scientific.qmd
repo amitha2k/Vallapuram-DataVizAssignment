@@ -1,5 +1,6 @@
 ---
-title: "Version A: Scientific article"
+title: "Are Hit Songs Getting More Disposable?: Changes in Longevity of Songs over Time"
+subtitle: "Version A: Scientific article"
 ---
 
 ```{r}
