@@ -30,21 +30,21 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Are hit songs getting more disposable?",
+    "title": "Are Hit Songs Getting More Disposable?",
     "section": "",
     "text": "Is popular music becoming more disposable? In the era of short-form content, short attention spans and Tik-tok virality. I am sure we’ve all despised songs that we have had to hear 3000 times a day and collectively banished them from our social media feeds, and hence, the charts too. A common assumption about the streaming era is that songs now rise and vanish faster than ever. Using every weekly Billboard Hot 100 chart from 1958 to 2021, covering 28,122 songs that debuted between 1959 and 2019, this project asks how long songs actually stay on the chart.\nAt first, the data seem to confirm it. The typical song’s chart run grew from about 7 weeks in the 1960s to 20 weeks in 2001, then collapsed to 4 weeks by 2019.\nBut the distribution behind that trend reveals two artificial “walls”. From 1991, a quarter of all songs left the chart at exactly 20 weeks, because Billboard began removing songs after 20 weeks once they fell below No. 50. In the 2010s, more than a quarter of songs charted for a single week, mostly album tracks that entered briefly on release-week downloads and streams and never reached the top half of the chart. The apparent rise and fall in longevity therefore reflects chart rules and release patterns as much as listening habits.\nMeasured in a way neither wall affects, by counting how long Top 10 hits stay in the Top 40, the trend reverses: the biggest hits have grown steadily more durable, from about 10 weeks in the 1960s to more than 24 weeks in the 2010s.\nThe Hot 100 has not become more disposable. It has become more top-heavy: songs stay longer in the top half and come and go quick in the bottom half.\n(I was inspired by https://pudding.cool/2024/11/love-songs/ to look at the Billboard dataset. Being a musician myself, this dataset sparked curiosity!)"
   },
   {
     "objectID": "index.html#story-summary",
     "href": "index.html#story-summary",
-    "title": "Are hit songs getting more disposable?",
+    "title": "Are Hit Songs Getting More Disposable?",
     "section": "",
     "text": "Is popular music becoming more disposable? In the era of short-form content, short attention spans and Tik-tok virality. I am sure we’ve all despised songs that we have had to hear 3000 times a day and collectively banished them from our social media feeds, and hence, the charts too. A common assumption about the streaming era is that songs now rise and vanish faster than ever. Using every weekly Billboard Hot 100 chart from 1958 to 2021, covering 28,122 songs that debuted between 1959 and 2019, this project asks how long songs actually stay on the chart.\nAt first, the data seem to confirm it. The typical song’s chart run grew from about 7 weeks in the 1960s to 20 weeks in 2001, then collapsed to 4 weeks by 2019.\nBut the distribution behind that trend reveals two artificial “walls”. From 1991, a quarter of all songs left the chart at exactly 20 weeks, because Billboard began removing songs after 20 weeks once they fell below No. 50. In the 2010s, more than a quarter of songs charted for a single week, mostly album tracks that entered briefly on release-week downloads and streams and never reached the top half of the chart. The apparent rise and fall in longevity therefore reflects chart rules and release patterns as much as listening habits.\nMeasured in a way neither wall affects, by counting how long Top 10 hits stay in the Top 40, the trend reverses: the biggest hits have grown steadily more durable, from about 10 weeks in the 1960s to more than 24 weeks in the 2010s.\nThe Hot 100 has not become more disposable. It has become more top-heavy: songs stay longer in the top half and come and go quick in the bottom half.\n(I was inspired by https://pudding.cool/2024/11/love-songs/ to look at the Billboard dataset. Being a musician myself, this dataset sparked curiosity!)"
   },
   {
     "objectID": "index.html#read-the-story",
     "href": "index.html#read-the-story",
-    "title": "Are hit songs getting more disposable?",
+    "title": "Are Hit Songs Getting More Disposable?",
     "section": "Read the story",
     "text": "Read the story\n\nVersion A: Scientific article: static, greyscale figures with full technical detail\nVersion B: Web explainer: the same story for a general audience, with interactive charts\nData and sources: where the data comes from, how it was processed, and its limitations"
   },
