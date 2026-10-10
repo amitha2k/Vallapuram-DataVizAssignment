@@ -19,6 +19,8 @@ Measured in a way neither wall affects, by counting how long Top 10 hits stay in
 
 The Hot 100 has not become more disposable. It has become more top-heavy: songs stay longer in the top half and come and go quick in the bottom half.
 
+(I was inspired by https://pudding.cool/2024/11/love-songs/ to look at the Billboard dataset. Being a musician myself, this dataset sparked curiosity!)
+
 ## Read the story
 
 - [**Version A: Scientific article**](scientific.qmd): static, greyscale figures with full technical detail
