@@ -118,8 +118,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#how-the-data-was-processed" id="toc-how-the-data-was-processed" class="nav-link" data-scroll-target="#how-the-data-was-processed">How the data was processed</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -143,11 +151,64 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Dataset:</strong> Billboard Hot 100 weekly charts, 2 August 1958 to 29 May 2021, from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-09-14">TidyTuesday, 14 September 2021</a> (compiled by Sean Miller from Billboard.com).</p>
-<p><em>Transformations, limitations and rule changes go here.</em></p>
-<p><strong>To reproduce:</strong> run <code>R/01_download.R</code>, then <code>R/02_clean.R</code>, then render the site.</p>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<p><strong>Billboard Hot 100 weekly charts, 2 August 1958 to 29 May 2021.</strong> The data comes from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-09-14">TidyTuesday (14 September 2021)</a>, which redistributes a dataset compiled by Sean Miller from Billboard.com charts (via Data.World). Each row is one song in one week’s chart: 327,895 rows covering 29,389 unique songs. Variables include the chart date, position, song title, performer, and weeks on chart. The TidyTuesday release also includes Spotify audio features for each song; these were not used in this project.</p>
+</section>
+<section id="how-the-data-was-processed" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-data-was-processed">How the data was processed</h2>
+<p>All processing is done in R and can be reproduced from this project’s repository.</p>
+<ol type="1">
+<li><strong>Download</strong> (<code>R/01_download.R</code>): reads <code>billboard.csv</code> directly from the TidyTuesday GitHub repository. The raw file (about 45 MB) is not stored in the repository; this script retrieves it.</li>
+<li><strong>Clean</strong> (<code>R/02_clean.R</code>): collapses weekly rows into <strong>one row per song</strong>, identified by TidyTuesday’s <code>song_id</code> (song title + performer), and saves a small processed file (<code>data/processed/songs.rds</code>) used by every figure.</li>
+</ol>
+<p>For each song, the following measures were computed:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total weeks on chart</td>
+<td>Number of weeks the song appeared on the Hot 100, summed across all chart runs, including re-entries</td>
+</tr>
+<tr class="even">
+<td>Weeks in the Top 40</td>
+<td>Number of weeks the song was ranked No.&nbsp;40 or higher</td>
+</tr>
+<tr class="odd">
+<td>Peak position</td>
+<td>Best (lowest-numbered) chart position reached</td>
+</tr>
+<tr class="even">
+<td>Debut year</td>
+<td>Year of the song’s first week on the chart</td>
+</tr>
+<tr class="odd">
+<td>Top 10 hit</td>
+<td>Song peaked at No.&nbsp;10 or higher</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis window:</strong> songs that debuted between 1959 and 2019 (n = 28,122). Songs from 1958 were excluded because the chart began partway through that year. Songs debuting in 2020 or later were excluded because the data ends in May 2021, before many of their chart runs had finished. For the distribution figures, songs were grouped into three periods (1959–1990, 1991–2004, 2010–2019); songs debuting 2005–2009 were left out of that comparison as a transition period between the two discontinuities.</p>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<ul>
+<li>Billboard Hot 100 data: <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-09-14">TidyTuesday, 2021-09-14</a></li>
+<li>Introduction of the 1991 recurrent rule: <a href="https://waxy.org/2008/05/the_whitburn_project_onehit_wonders_and_pop_longevity/">Waxy.org, “The Whitburn Project: One-Hit Wonders and Pop Longevity”</a></li>
+<li>2025 recurrent rule changes: <a href="https://billboard.substack.com/p/older-hits-will-now-drop-off-the">Billboard, “Older Hits Will Now Drop Off the Hot 100 Faster”</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
